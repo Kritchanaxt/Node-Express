@@ -1,0 +1,12 @@
+{
+  "name": "nodebasic",
+  "version": "1.0.0",
+  "description": "nodejs for beginner",
+  "main": "8081.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon./bin/www"
+  },
+  "author": "kritchanatdev",
+  "license": "ISC"
+}
