@@ -1,47 +1,23 @@
-const http = require('http');
+const http = require('http')
+const fs = require('fs')
+const path = require('path')
+
+const indexPage = fs.readFileSync(path.join(__dirname, 'webpage', 'index.html'), 'utf-8')
+const productPage = fs.readFileSync(path.join(__dirname, 'webpage', 'product.html'), 'utf-8')
 
 const server = http.createServer((req, res) => {
-    const pathName = req.url;
-    console.log("url = ", pathName);
-    if(pathName === "/" || pathName === "/home"){
-        const myhtml = `
-        <style>
-            body {
-                background-color: lightblue;
-            }
-            h1 {
-                color: green;
-            }
-            p {
-                color: blue;
-            }
-        </style>
-        <h1>Hello Homepage</h1>
-        <p>Kritchanat student | 2024</p>`;
-    res.end(myhtml);
-    } else if (pathName === "/product"){
-        const myhtml = `
-        <style>
-            p {
-                color: yellow;
-            }
-        </style>
-        <h1>Hello Product</h1>
-        <p>ice-cream yummy</p>`;
-    res.end(myhtml);
+    const pathName = req.url
+    console.log("url = ", pathName)
+    if (pathName === "/" || pathName === "/home") {
+        res.end(indexPage)
+    } else if (pathName === "/product") {
+        res.end(productPage)
     } else {
-        res.writeHead(404);
-        const myhtml = `
-        <style>
-            h1 {
-              color: red;
-            }
-        </style>
-        <h1>Not Found</h1>`;
-    res.end(myhtml);
+        res.writeHead(404)
+        res.end("<h1>Not Found!</h1>")
     }
 });
 
 server.listen(8081, 'localhost', () => {
-    console.log("Started server in port 8081");
+    console.log("start server in port 8081")
 });
